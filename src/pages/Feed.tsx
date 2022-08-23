@@ -12,7 +12,7 @@ function Feed() {
         //fetch("https://live.floridajs.com/photos")
         .then(res => res.json())
         .then((data: Photo[]) => {
-          console.log(data)
+          //console.log(data)
           setPhotos(data)
         })
       }
@@ -25,7 +25,7 @@ function Feed() {
       <h1>The Feed</h1>
       <div>
         {photos.map((photo: Photo) => {
-          return <PhotoView key={photo._id} photo={photo} />
+          return <PhotoView key={photo._id} photo={photo} setPhotos={setPhotos}/>
           //return <div><img src={photo.photoUrl}/></div>
         })}
       </div>

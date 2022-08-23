@@ -3,14 +3,22 @@ import {Photo} from "../models/photo";
 import { updateLike } from "../services/photoServices";
 
 interface PhotoViewProp{
-  photo: Photo
+  photo: Photo,
+  setPhotos: Function
 }
 
-function PhotoView({photo}:PhotoViewProp) {
+function PhotoView({photo, setPhotos}:PhotoViewProp) {
 
   async function handleLike(photoId: string) {
       const newLike = await updateLike(photoId)
       console.log(newLike)
+      setPhotos((photos: Photo[]) => {
+        return photos.map((photo:Photo) => 
+        photo._id == photoId 
+        ? {...photo,likes: newLike}
+        :
+        photo)
+      })
   }
   return(
     <>

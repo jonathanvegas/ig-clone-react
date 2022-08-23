@@ -11,7 +11,8 @@ export async function updateLike(photoId: string): Promise<number> {
     body: JSON.stringify({ likes: 1 }),
   });
   const photo: Photo = await fetchPhotos.json();
-  return photo.likes || 0
+  const newLikes: number = photo.likes || 0
+  return newLikes + 1
 }
 
 export async function getPhotos(): Promise<Photo[]> {
